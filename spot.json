@@ -1,0 +1,82 @@
+{
+ "titre": "<em>Kalam</em>, plateforme e-learning",
+ "type": "LMS · formation en ligne",
+ "sous_titre": "Parcours, leçons animées, quiz corrigés, progression, certificat",
+ "couleur": "#2448d8",
+ "graine": 19,
+ "voix": [
+  [
+   3.3,
+   "Kalam, une plateforme de formation en ligne,"
+  ],
+  [
+   8.2,
+   "des leçons courtes, des vidéos animées, des exercices interactifs, et des quiz corrigés,"
+  ],
+  [
+   17.0,
+   "la progression se suit jour après jour, jusqu'au certificat."
+  ]
+ ],
+ "etapes": [
+  {
+   "t": "wait",
+   "ms": 900
+  },
+  {
+   "t": "click",
+   "sel": "#contB",
+   "pause": 700
+  },
+  {
+   "t": "click",
+   "sel": "#pp",
+   "pause": 2600
+  },
+  {
+   "t": "eval",
+   "js": "window.scrollTo({top:620,behavior:'smooth'})",
+   "pause": 700
+  },
+  {
+   "t": "eval",
+   "js": "const i=document.querySelector('#c3');i.value='50';i.dispatchEvent(new Event('input',{bubbles:true}))",
+   "pause": 1000
+  },
+  {
+   "t": "click",
+   "sel": "#done",
+   "pause": 900
+  },
+  {
+   "t": "click",
+   "sel": ".q[data-q='0'] .opt[data-o='1']",
+   "pause": 350
+  },
+  {
+   "t": "click",
+   "sel": ".q[data-q='1'] .opt[data-o='1']",
+   "pause": 350
+  },
+  {
+   "t": "click",
+   "sel": ".q[data-q='2'] .opt[data-o='1']",
+   "pause": 350
+  },
+  {
+   "t": "click",
+   "sel": ".q[data-q='3'] .opt[data-o='1']",
+   "pause": 350
+  },
+  {
+   "t": "click",
+   "sel": "#check",
+   "pause": 1900
+  },
+  {
+   "t": "eval",
+   "js": "P.done=ALL.map(l=>l.id);save();go('cert');confetti()",
+   "pause": 2400
+  }
+ ]
+}

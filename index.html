@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalam — Formations en ligne pour entrepreneurs</title>
+<meta name="description" content="Plateforme e-learning : parcours en modules, leçons animées, quiz corrigés, suivi de progression, notes et certificat vérifiable.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232448d8'/%3E%3Cpath d='M10 8v16M10 16l9-8M13 13l8 11' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#f7f5f0;--ink:#16171d;--blue:#2448d8;--blue2:#e6ebfc;--coral:#ff6b4a;--mute:#6c6d75;--line:#e4e1d8;--card:#fff;--ok:#12805c;--bad:#c2410c}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 15.5px/1.55 'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit;color:inherit}button{cursor:pointer}
+.serif{font-family:'Instrument Serif';font-weight:400;letter-spacing:-.01em}
+.top{height:64px;display:flex;align-items:center;gap:20px;padding:0 26px;border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:10}
+.lg{display:flex;align-items:center;gap:9px;font:700 19px 'Manrope';letter-spacing:-.04em;cursor:pointer}
+.lg i{width:30px;height:30px;border-radius:9px;background:var(--blue);display:grid;place-items:center;color:#fff;font:400 20px 'Instrument Serif';font-style:normal}
+.top nav{display:flex;gap:4px}
+.top nav button{border:0;background:none;padding:8px 12px;border-radius:9px;font-weight:600;font-size:14px;color:var(--mute)}
+.top nav button.on{background:#ebe8df;color:var(--ink)}
+.sp{flex:1}
+.me{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+.me i{width:34px;height:34px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-style:normal;font-size:13px}
+.streak{font-size:13px;color:var(--mute);font-weight:600;display:flex;align-items:center;gap:6px}
+.streak b{color:var(--coral)}
+.view{display:none}.view.on{display:block}
+.wrap{max-width:1180px;margin:auto;padding:34px 26px 60px}
+/* tableau de bord */
+.hello h1{font-size:clamp(40px,5vw,62px);line-height:1}
+.hello h1 em{color:var(--blue)}
+.hello p{color:var(--mute);margin-top:8px}
+.resume{margin-top:28px;display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+.cont{background:var(--ink);color:#fff;border-radius:22px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;position:relative;overflow:hidden}
+.cont small{color:#9a9ba5;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.1em}
+.cont h2{font-size:38px;line-height:1.05;margin:8px 0 6px}
+.cont p{color:#c9cad2}
+.cont .pbar{height:6px;background:#ffffff22;border-radius:4px;margin-top:18px;overflow:hidden}.cont .pbar i{display:block;height:100%;background:var(--coral);border-radius:4px;transition:width .6s}
+.cont .go{background:var(--coral);border:0;color:#fff;font-weight:700;border-radius:14px;height:50px;padding:0 22px;white-space:nowrap}
+.ring{pointer-events:none;position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:30px solid #ffffff0d}
+.stats{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stats b{display:block;font:400 40px/1 'Instrument Serif'}.stats span{font-size:13px;color:var(--mute)}
+.week{grid-column:1/-1;display:flex;gap:6px;align-items:flex-end;height:62px}
+.week div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:var(--mute)}
+.week i{width:100%;border-radius:5px 5px 2px 2px;background:var(--blue2);display:block}
+.week i.on{background:var(--blue)}
+h3.sec{font:400 30px 'Instrument Serif';margin:40px 0 14px}
+.courses{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.course{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;cursor:pointer;transition:.25s}
+.course:hover{transform:translateY(-3px);box-shadow:0 20px 40px -25px rgba(0,0,0,.3)}
+.course .cv{height:150px;position:relative;overflow:hidden}
+.course .cv svg{position:absolute;inset:0;width:100%;height:100%}
+.course .ci{padding:16px 18px 18px}
+.course h4{font:400 24px/1.1 'Instrument Serif';margin-bottom:6px}
+.course .meta{display:flex;gap:12px;font-size:13px;color:var(--mute)}
+.course .tag{position:absolute;left:12px;top:12px;background:#fff;border-radius:100px;padding:3px 10px;font-size:12px;font-weight:700}
+.course.soon{cursor:default;opacity:.75}.course.soon:hover{transform:none;box-shadow:none}
+/* lecteur */
+.player{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 64px)}
+.side{border-right:1px solid var(--line);padding:20px 16px;overflow-y:auto;max-height:calc(100vh - 64px);position:sticky;top:64px}
+.side h2{font:400 26px/1.1 'Instrument Serif';padding:0 8px}
+.side .prog{padding:10px 8px 16px;font-size:13px;color:var(--mute)}
+.side .prog .pbar{height:6px;background:#e7e4da;border-radius:4px;margin-top:6px;overflow:hidden}.side .prog .pbar i{display:block;height:100%;background:var(--blue);transition:width .5s}
+.mod{margin-bottom:8px}
+.mod h5{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--mute);padding:10px 8px 6px;display:flex;justify-content:space-between}
+.les{display:flex;gap:10px;align-items:center;padding:10px 8px;border-radius:12px;cursor:pointer;font-size:14px;font-weight:500;width:100%;border:0;background:none;text-align:left}
+.les:hover{background:#efece4}.les.on{background:var(--blue2);color:var(--blue)}
+.les .st{width:22px;height:22px;border-radius:50%;border:2px solid #cfcbbf;flex:none;display:grid;place-items:center;font-size:11px}
+.les.done .st{background:var(--ok);border-color:var(--ok);color:#fff}
+.les .st svg{width:12px;height:12px}
+.les small{margin-left:auto;color:var(--mute);font-size:12px;font-weight:500}
+.les.lock{opacity:.45;cursor:not-allowed}
+.main{padding:28px 40px 60px;max-width:920px}
+.crumb{font-size:13px;color:var(--mute);font-weight:600}
+.main h1{font:400 44px/1.05 'Instrument Serif';margin:6px 0 18px}
+.video{aspect-ratio:16/9;background:#101225;border-radius:20px;overflow:hidden;position:relative;color:#fff}
+.video svg{position:absolute;inset:0;width:100%;height:100%}
+.vctl{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;display:flex;align-items:center;gap:14px;background:linear-gradient(transparent,#0008)}
+.vctl button{width:40px;height:40px;border-radius:50%;border:0;background:#fff;color:#101225;display:grid;place-items:center}
+.vctl .tl{flex:1;height:5px;border-radius:3px;background:#ffffff33;cursor:pointer;position:relative}.vctl .tl i{position:absolute;left:0;top:0;bottom:0;background:var(--coral);border-radius:3px}
+.vctl span{font-size:12.5px;font-variant-numeric:tabular-nums;min-width:74px;text-align:right}
+.cap{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);background:#000a;padding:6px 14px;border-radius:8px;font-size:15px;max-width:80%;text-align:center;transition:opacity .3s}
+.body{margin-top:24px;font-size:16.5px;line-height:1.7;color:#2b2c33}
+.body h3{font:400 28px 'Instrument Serif';margin:26px 0 8px;color:var(--ink)}
+.body p+p{margin-top:12px}
+.tip{background:var(--blue2);border-radius:16px;padding:16px 18px;margin:20px 0;font-size:15px;color:#1f2a66}
+.tip b{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.calc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin:20px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:end}
+.calc label{display:grid;gap:4px;font-size:13px;color:var(--mute);font-weight:600}
+.calc input{height:42px;border:1px solid var(--line);border-radius:10px;padding:0 12px;font-weight:600;color:var(--ink)}
+.calc .r{grid-column:1/-1;background:var(--bg);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;font-weight:600}
+.calc .r b{font:400 26px 'Instrument Serif';color:var(--blue)}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:34px;padding-top:20px;border-top:1px solid var(--line);gap:10px;flex-wrap:wrap}
+.btn{height:46px;padding:0 20px;border-radius:13px;border:1px solid var(--line);background:#fff;font-weight:700;font-size:14.5px}
+.btn.p{background:var(--blue);color:#fff;border-color:var(--blue)}
+.notes{margin-top:26px;background:#fffdf5;border:1px solid #efe6c8;border-radius:16px;padding:14px 16px}
+.notes h4{font-size:13px;font-weight:700;margin-bottom:6px;display:flex;justify-content:space-between}
+.notes textarea{width:100%;min-height:70px;border:0;background:none;resize:vertical;outline:none;font-size:14.5px;line-height:1.6}
+.notes small{color:var(--mute);font-weight:500}
+/* quiz */
+.q{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:14px}
+.q h4{font-size:17px;margin-bottom:12px;font-weight:600}
+.q .n{font-size:12px;color:var(--mute);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;margin-top:8px;font-weight:500;transition:.15s}
+.opt:hover{border-color:var(--blue)}
+.opt i{width:22px;height:22px;border-radius:50%;border:2px solid #cfcbbf;flex:none}
+.opt.sel{border-color:var(--blue);background:var(--blue2)}.opt.sel i{border:6px solid var(--blue)}
+.opt.good{border-color:var(--ok);background:#e5f5ee}.opt.good i{border:6px solid var(--ok)}
+.opt.wrong{border-color:var(--bad);background:#fdeee6}.opt.wrong i{border:6px solid var(--bad)}
+.expl{margin-top:10px;font-size:14px;color:#3b3c44;display:none;padding:10px 12px;background:var(--bg);border-radius:10px}
+.q.checked .expl{display:block}
+.score{text-align:center;padding:30px;background:var(--ink);color:#fff;border-radius:20px;margin-bottom:16px;display:none}
+.score b{font:400 80px/1 'Instrument Serif';color:var(--coral)}
+/* certificat */
+.cert{background:#fff;border-radius:6px;aspect-ratio:1.414;max-width:880px;margin:20px auto 0;padding:6% 7%;position:relative;box-shadow:0 30px 60px -30px rgba(0,0,0,.35);display:flex;flex-direction:column;text-align:center;overflow:hidden}
+.cert::before{content:"";position:absolute;inset:18px;border:1.5px solid var(--blue);border-radius:4px;pointer-events:none}
+.cert .k{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.cert h2{font:400 clamp(30px,5vw,58px)/1 'Instrument Serif';margin:2% 0}
+.cert .nm{font:italic 400 clamp(34px,6vw,70px)/1 'Instrument Serif';color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:2%;margin:2% 12%}
+.cert .crs{font-size:clamp(14px,1.8vw,18px);margin-top:2%}
+.cert .ft{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-size:12.5px;color:var(--mute);text-align:left}
+.cert .seal{width:88px;height:88px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font:400 15px/1.1 'Instrument Serif';text-align:center;transform:rotate(-10deg)}
+.cert .sig{font:italic 400 26px 'Instrument Serif';color:var(--ink);border-bottom:1px solid var(--ink);padding:0 20px 2px}
+.certf{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.certf input{height:46px;border:1px solid var(--line);border-radius:12px;padding:0 14px;width:280px;font-weight:600}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;transition:.35s;z-index:40}.toast.on{transform:translate(-50%,0)}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:30}
+@media (max-width:900px){.resume,.courses{grid-template-columns:1fr}.player{grid-template-columns:1fr}.side{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line)}.main{padding:20px 16px 50px}.top{padding:0 14px;gap:10px}.top nav,.streak{display:none}.calc{grid-template-columns:1fr}.wrap{padding:24px 16px 50px}.cont{grid-template-columns:1fr}}
+@media print{body *{visibility:hidden}.cert,.cert *{visibility:visible}.cert{position:fixed;left:0;top:0;width:297mm;max-width:none;height:210mm;margin:0;box-shadow:none;border-radius:0}@page{size:A4 landscape;margin:0}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="top"><div class="lg" data-go="home"><i>k</i>kalam</div><nav><button data-go="home" class="on">Tableau de bord</button><button data-go="player">Ma formation</button><button data-go="cert">Certificat</button></nav><div class="sp"></div><div class="streak">Série <b id="streak">4 jours</b></div><div class="me"><i>FN</i><span>Fadimatou</span></div></header>
+
+<section class="view on" id="v-home"><div class="wrap">
+  <div class="hello"><h1 class="serif">Bonjour Fadimatou, <em>on reprend ?</em></h1><p>Dix minutes par jour suffisent. Votre prochaine leçon vous attend là où vous l'avez laissée.</p></div>
+  <div class="resume">
+    <div class="cont"><div class="ring"></div><div><small>En cours</small><h2 class="serif">Lancer sa boutique en ligne</h2><p id="contL"></p><div class="pbar"><i id="contP"></i></div></div><button class="go" id="contB">Continuer</button></div>
+    <div class="stats"><div><b id="stL">0</b><span>leçons terminées</span></div><div><b id="stQ">—</b><span>score moyen aux quiz</span></div><div class="week" id="week"></div></div>
+  </div>
+  <h3 class="sec">Catalogue</h3>
+  <div class="courses" id="courses"></div>
+</div></section>
+
+<section class="view" id="v-player"><div class="player"><aside class="side" id="side"></aside><main class="main" id="main"></main></div></section>
+
+<section class="view" id="v-cert"><div class="wrap" id="certW"></div></section>
+<div class="toast" id="toast"></div><canvas class="confetti" id="conf"></canvas>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// ——— Contenu du cours ———
+const C={titre:'Lancer sa boutique en ligne',modules:[
+ {t:'Trouver son offre',l:[
+  {id:'a1',t:'Choisir quoi vendre',d:'6 min',video:[['Un bon produit en ligne résout un problème précis.',0],['Il se photographie bien et voyage sans casse.',4],['Et sa marge couvre la livraison.',8]],html:`<p>Vendre en ligne, ce n'est pas mettre un catalogue sur internet : c'est proposer <b>une chose précise à des gens précis</b>. Les boutiques qui démarrent bien vendent souvent moins de dix produits.</p><h3>Trois questions avant de commencer</h3><p>Qui achète, et où passe-t-il son temps en ligne ? Le produit se photographie-t-il bien ? Supporte-t-il un trajet en moto jusqu'à Bonabéri sans dommage ?</p><div class="tip"><b>Astuce</b>Commencez par vendre à votre entourage via WhatsApp : dix ventes réelles valent mieux qu'une étude de marché.</div>`},
+  {id:'a2',t:'Calculer son prix de vente',d:'8 min',video:[['Le prix part du coût, pas de la concurrence.',0],['Ajoutez livraison, frais de paiement et emballage.',4],['Puis visez une marge d\'au moins 35 %.',8]],html:`<p>Un prix trop bas tue une boutique plus sûrement qu'un prix trop haut. Partez de vos coûts réels, puis ajoutez votre marge.</p><h3>Essayez avec vos chiffres</h3><div class="calc" id="calc"><label>Coût d'achat (F)<input id="c1" value="6500" inputmode="numeric"></label><label>Livraison et emballage (F)<input id="c2" value="1500" inputmode="numeric"></label><label>Marge visée (%)<input id="c3" value="40" inputmode="numeric"></label><div class="r"><span>Prix de vente conseillé<br><small style="color:var(--mute);font-weight:500">frais Mobile Money de 2 % inclus</small></span><b id="cr"></b></div></div><p>Arrondissez ensuite à un prix « psychologique » : 13 900 F se lit mieux que 13 878 F.</p>`},
+  {id:'a3',t:'Quiz : votre offre',d:'4 questions',quiz:[
+   {q:'Combien de produits pour démarrer une boutique en ligne ?',o:['Le plus possible pour rassurer','Une petite sélection, souvent moins de dix','Exactement cent'],a:1,e:'Une sélection courte se présente mieux, se photographie mieux et se gère sans stock dormant.'},
+   {q:'Sur quoi se base d\'abord le prix de vente ?',o:['Le prix du concurrent le moins cher','Vos coûts réels plus une marge','L\'intuition'],a:1,e:'Coût d\'achat, livraison, emballage et frais de paiement, puis la marge.'},
+   {q:'Une marge de départ raisonnable est d\'au moins…',o:['5 %','35 %','300 %'],a:1,e:'En dessous de 30 à 35 %, les retours, la publicité et les imprévus effacent le bénéfice.'},
+   {q:'Le meilleur premier test de votre offre ?',o:['Une campagne publicitaire nationale','Vendre à son entourage sur WhatsApp','Attendre d\'avoir un site parfait'],a:1,e:'Des ventes réelles, même petites, valident l\'offre plus vite que n\'importe quelle étude.'}]}]},
+ {t:'Vendre et encaisser',l:[
+  {id:'b1',t:'Des photos qui vendent',d:'7 min',video:[['Lumière du jour, près d\'une fenêtre.',0],['Fond uni, produit centré.',4],['Une photo en situation, une de détail.',8]],html:`<p>Votre photo est votre vitrine. Un téléphone récent suffit, à condition de soigner la lumière : la lumière du jour près d'une fenêtre, jamais le flash.</p><h3>La série idéale</h3><p>Une photo sur fond uni, une en situation, une de détail, et une à côté d'un objet connu pour donner l'échelle.</p>`},
+  {id:'b2',t:'Encaisser par Mobile Money',d:'6 min',video:[['Un numéro marchand inspire confiance.',0],['Le lien de paiement évite les erreurs de montant.',4],['Le reçu automatique rassure l\'acheteur.',8]],html:`<p>Au Cameroun, la majorité des achats en ligne se règlent par Orange Money ou MTN MoMo. Un compte marchand, plutôt qu'un numéro personnel, inspire davantage confiance et simplifie votre comptabilité.</p><div class="tip"><b>À retenir</b>Envoyez toujours un récapitulatif écrit : produit, prix, frais de livraison, délai.</div>`},
+  {id:'b3',t:'Quiz : vendre',d:'3 questions',quiz:[
+   {q:'La meilleure lumière pour photographier un produit ?',o:['Le flash du téléphone','La lumière du jour près d\'une fenêtre','Un néon de bureau'],a:1,e:'Douce et fidèle aux couleurs, elle évite les reflets durs du flash.'},
+   {q:'Pourquoi un compte marchand Mobile Money ?',o:['C\'est obligatoire pour recevoir de l\'argent','Il inspire confiance et facilite le suivi','Il supprime tous les frais'],a:1,e:'Le nom de la boutique s\'affiche et les encaissements sont séparés de vos dépenses personnelles.'},
+   {q:'Après un paiement, il faut envoyer…',o:['Rien, l\'acheteur sait','Un récapitulatif écrit avec le délai','Un nouveau catalogue'],a:1,e:'Le récapitulatif évite la plupart des litiges.'}]}]},
+ {t:'Livrer et fidéliser',l:[
+  {id:'c1',t:'Organiser ses livraisons',d:'5 min',video:[['Regroupez les livraisons par quartier.',0],['Annoncez un créneau, pas une heure.',4],['Confirmez la veille par message.',8]],html:`<p>La livraison est le moment où une vente devient une recommandation, ou une mauvaise réputation. Regroupez vos livraisons par zone et annoncez des créneaux réalistes.</p>`},
+  {id:'c2',t:'Transformer un client en ambassadeur',d:'6 min',video:[['Un mot manuscrit dans le colis.',0],['Un message une semaine après.',4],['Une remise pour le prochain achat d\'un proche.',8]],html:`<p>Un client satisfait revient, et surtout, il en parle. Un petit mot dans le colis et un message une semaine après la livraison coûtent peu et rapportent beaucoup.</p>`}]}
+]};
+const ALL=C.modules.flatMap((m,mi)=>m.l.map(l=>({...l,mi,m:m.t})));
+// ——— Progression ———
+let P;try{P=JSON.parse(localStorage.getItem('kalam'))}catch(e){}
+if(!P)P={done:['a1'],quiz:{},notes:{},cur:'a2',name:'Fadimatou Njoya',days:[1,1,0,1,1,0,0]};
+const save=()=>{try{localStorage.setItem('kalam',JSON.stringify(P))}catch(e){}};
+const pct=()=>Math.round(P.done.length/ALL.length*100);
+const unlocked=id=>{const i=ALL.findIndex(l=>l.id===id);return i===0||P.done.includes(ALL[i-1].id)||P.done.includes(id)};
+// ——— Navigation ———
+function go(v){$$('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));$$('.top nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===v));if(v==='home')home();if(v==='player')lesson(P.cur);if(v==='cert')cert();scrollTo(0,0)}
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)go(g.dataset.go)});
+function toast(t){$('#toast').textContent=t;$('#toast').classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>$('#toast').classList.remove('on'),2400)}
+// ——— Tableau de bord ———
+const cover=(a,b,c)=>`<svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice"><rect width="300" height="150" fill="${a}"/><circle cx="240" cy="30" r="70" fill="${b}"/><rect x="30" y="70" width="90" height="60" rx="8" fill="${c}"/><rect x="130" y="50" width="60" height="80" rx="8" fill="#fff" opacity=".85"/><path d="M30 70l45-30 45 30" fill="${c}"/></svg>`;
+function home(){const cur=ALL.find(l=>l.id===P.cur)||ALL[0];$('#contL').textContent=`Module ${cur.mi+1} · ${cur.t} · ${pct()} % terminé`;$('#contP').style.width=pct()+'%';
+  $('#stL').textContent=P.done.length+' / '+ALL.length;const qs=Object.values(P.quiz);$('#stQ').textContent=qs.length?Math.round(qs.reduce((a,b)=>a+b,0)/qs.length)+' %':'—';
+  const mx=[18,25,0,12,22,0,0];$('#week').innerHTML=['L','M','M','J','V','S','D'].map((d,i)=>`<div><i class="${P.days[i]?'on':''}" style="height:${P.days[i]?Math.max(10,mx[i]||14)*1.6:6}px"></i>${d}</div>`).join('');
+  $('#courses').innerHTML=[[C.titre,'#2448d8','#4f6ef0','#ff6b4a',ALL.length+' leçons · 1 h 10',pct()+' %',false],['Tenir ses comptes simplement','#12805c','#2fa37c','#ffd166','9 leçons · 1 h 30','Nouveau',true],['Vendre sur les réseaux sociaux','#ff6b4a','#ff8f73','#16171d','11 leçons · 1 h 45','Bientôt',true]].map(([t,a,b,c,m,tag,soon])=>`<div class="course ${soon?'soon':''}" ${soon?'':'data-go="player"'}><div class="cv">${cover(a,b,c)}<span class="tag">${tag}</span></div><div class="ci"><h4>${t}</h4><div class="meta"><span>${m}</span><span>Certificat</span></div></div></div>`).join('')}
+$('#contB').onclick=()=>go('player');
+// ——— Lecteur ———
+function side(){const c=ALL.findIndex(l=>l.id===P.cur);$('#side').innerHTML=`<h2>${C.titre}</h2><div class="prog">${pct()} % terminé<div class="pbar"><i style="width:${pct()}%"></i></div></div>`+
+  C.modules.map((m,mi)=>`<div class="mod"><h5><span>Module ${mi+1} · ${m.t}</span><span>${m.l.filter(l=>P.done.includes(l.id)).length}/${m.l.length}</span></h5>${m.l.map(l=>`<button class="les ${l.id===P.cur?'on':''} ${P.done.includes(l.id)?'done':''} ${unlocked(l.id)?'':'lock'}" data-l="${l.id}"><span class="st">${P.done.includes(l.id)?'<svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-4.7" fill="none" stroke="#fff" stroke-width="1.8"/></svg>':''}</span>${l.t}<small>${l.d}</small></button>`).join('')}</div>`).join('')+
+  `<button class="les ${pct()===100?'':'lock'}" data-go="cert" style="margin-top:6px"><span class="st" style="border-color:var(--coral)"></span>Certificat<small>${pct()===100?'disponible':'à 100 %'}</small></button>`}
+$('#side').onclick=e=>{const b=e.target.closest('.les[data-l]');if(!b)return;if(b.classList.contains('lock'))return toast('Terminez la leçon précédente pour débloquer celle-ci');lesson(b.dataset.l)};
+let vt=null;
+function lesson(id){if(!unlocked(id))id=ALL.find(l=>!P.done.includes(l.id))?.id||ALL[0].id;P.cur=id;save();side();const l=ALL.find(x=>x.id===id),i=ALL.indexOf(l),nx=ALL[i+1];clearInterval(vt);
+  $('#main').innerHTML=`<div class="crumb">Module ${l.mi+1} · ${l.m}</div><h1>${l.t}</h1>`+(l.quiz?quizHtml(l):`${video(l)}<div class="body">${l.html}</div><div class="notes"><h4>Mes notes <small id="ns">enregistrées sur cet appareil</small></h4><textarea id="note" placeholder="Ce que je retiens, ce que je vais appliquer…">${P.notes[id]||''}</textarea></div>`)+
+   `<div class="foot"><button class="btn" ${i?'':'disabled'} id="prev">← Précédente</button>${l.quiz?'':`<button class="btn p" id="done">${P.done.includes(id)?'Leçon suivante →':'Marquer comme terminée'}</button>`}</div>`;
+  $('#prev').onclick=()=>i&&lesson(ALL[i-1].id);
+  if($('#done'))$('#done').onclick=()=>{complete(id);nx?lesson(nx.id):go('cert')};
+  if($('#note'))$('#note').oninput=e=>{P.notes[id]=e.target.value;save();$('#ns').textContent='enregistré'};
+  if($('#calc')){const up=()=>{const c=+$('#c1').value||0,d=+$('#c2').value||0,m=(+$('#c3').value||0)/100,p=(c+d)/(1-m)/0.98;$('#cr').textContent=Math.round(p).toLocaleString('fr-FR').replace(/ /g,' ')+' F'};$('#calc').oninput=up;up()}
+  if(l.video)player(l);if(l.quiz)quizBind(l);scrollTo(0,0)}
+function complete(id){if(!P.done.includes(id)){P.done.push(id);P.days[(new Date().getDay()+6)%7]=1;save();toast('Leçon terminée : '+pct()+' % du parcours');if(pct()===100){confetti();toast('Parcours terminé : votre certificat est prêt')}}side()}
+// « vidéo » animée en SVG, avec sous-titres et barre de lecture
+function video(l){return `<div class="video" id="vid"><svg viewBox="0 0 800 450"><defs><radialGradient id="vg" cx="30%" cy="30%"><stop offset="0" stop-color="#2448d8"/><stop offset="1" stop-color="#101225"/></radialGradient></defs><rect width="800" height="450" fill="url(#vg)"/><g id="sc"></g></svg><div class="cap" id="cap"></div><div class="vctl"><button id="pp" aria-label="Lecture"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 1.5v11l9-5.5z" fill="#101225"/></svg></button><div class="tl" id="tl"><i id="tli"></i></div><span id="tt">0:00 / 0:12</span></div></div>`}
+function player(l){let t=0,play=false;const T=12,sc=$('#sc');
+  const scenes=[(k)=>`<circle cx="${400}" cy="210" r="${60+k*30}" fill="#ff6b4a" opacity=".9"/><rect x="${330}" y="${170}" width="140" height="90" rx="12" fill="#fff"/><path d="M350 230l30-30 25 22 18-14 27 22" fill="none" stroke="#2448d8" stroke-width="6" stroke-linecap="round"/>`,
+    (k)=>`<rect x="${200+k*20}" y="140" width="160" height="160" rx="16" fill="#fff"/><rect x="${440-k*20}" y="140" width="160" height="160" rx="16" fill="#ff6b4a"/><text x="400" y="240" font-family="Instrument Serif" font-size="70" fill="#fff" text-anchor="middle">+</text>`,
+    (k)=>`<rect x="250" y="${300-k*140}" width="70" height="${k*140}" rx="8" fill="#4f6ef0"/><rect x="365" y="${300-k*190}" width="70" height="${k*190}" rx="8" fill="#ff6b4a"/><rect x="480" y="${300-k*230}" width="70" height="${k*230}" rx="8" fill="#fff"/><line x1="220" x2="580" y1="300" y2="300" stroke="#fff" stroke-opacity=".4" stroke-width="2"/>`];
+  const draw=()=>{const s=Math.min(2,Math.floor(t/4)),k=Math.min(1,(t%4)/1.2);sc.innerHTML=scenes[s](k)+`<text x="40" y="60" font-family="Manrope" font-weight="700" font-size="16" fill="#fff" opacity=".6">KALAM · ${l.t.toUpperCase()}</text>`;
+    const cap=[...l.video].reverse().find(c=>t>=c[1]);$('#cap').textContent=cap?cap[0]:'';$('#tli').style.width=t/T*100+'%';$('#tt').textContent=`0:${String(Math.floor(t)).padStart(2,'0')} / 0:${T}`;
+    $('#pp').innerHTML=play?'<svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 2h3v10H3zM8 2h3v10H8z" fill="#101225"/></svg>':'<svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 1.5v11l9-5.5z" fill="#101225"/></svg>'};
+  $('#pp').onclick=()=>{play=!play;if(t>=T)t=0;draw()};$('#tl').onclick=e=>{const r=e.currentTarget.getBoundingClientRect();t=(e.clientX-r.left)/r.width*T;draw()};
+  vt=setInterval(()=>{if(!play)return;t+=.1;if(t>=T){t=T;play=false;toast('Vidéo terminée')}draw()},100);draw()}
+// ——— Quiz ———
+function quizHtml(l){return `<p style="color:var(--mute);margin-bottom:18px">Répondez aux ${l.quiz.length} questions, puis validez. Il faut 75 % pour passer au module suivant.</p><div class="score" id="score"><b id="sv"></b><p id="sm"></p></div>`+l.quiz.map((q,i)=>`<div class="q" data-q="${i}"><div class="n">Question ${i+1} sur ${l.quiz.length}</div><h4>${q.q}</h4>${q.o.map((o,j)=>`<button class="opt" data-o="${j}"><i></i>${o}</button>`).join('')}<div class="expl">${q.e}</div></div>`).join('')+`<button class="btn p" id="check" style="margin-top:6px">Valider mes réponses</button>`}
+function quizBind(l){const ans={};$('#main').onclick=e=>{const o=e.target.closest('.opt');if(!o||o.closest('.q').classList.contains('checked'))return;const q=o.closest('.q');q.querySelectorAll('.opt').forEach(x=>x.classList.toggle('sel',x===o));ans[q.dataset.q]=+o.dataset.o};
+  $('#check').onclick=()=>{if(Object.keys(ans).length<l.quiz.length)return toast('Répondez à toutes les questions');let ok=0;
+    l.quiz.forEach((q,i)=>{const el=$(`.q[data-q="${i}"]`);el.classList.add('checked');el.querySelectorAll('.opt').forEach((o,j)=>{o.classList.remove('sel');if(j===q.a)o.classList.add('good');else if(j===ans[i])o.classList.add('wrong')});if(ans[i]===q.a)ok++});
+    const s=Math.round(ok/l.quiz.length*100);P.quiz[l.id]=s;save();$('#score').style.display='block';$('#sv').textContent=s+' %';
+    if(s>=75){$('#sm').textContent=`${ok} bonnes réponses sur ${l.quiz.length}. Module validé.`;complete(l.id);$('#check').textContent='Continuer →';$('#check').onclick=()=>{const n=ALL[ALL.indexOf(l)+1];n?lesson(n.id):go('cert')}}
+    else{$('#sm').textContent=`${ok} sur ${l.quiz.length}. Relisez les explications et réessayez.`;$('#check').textContent='Recommencer';$('#check').onclick=()=>lesson(l.id)}
+    scrollTo({top:0,behavior:'smooth'})}}
+// ——— Certificat ———
+function cert(){const ok=pct()===100,code='KLM-'+(P.name.split('').reduce((a,c)=>a*31+c.charCodeAt(0)>>>0,7)%900000+100000);
+  $('#certW').innerHTML=`<div class="hello"><h1 class="serif">${ok?'Félicitations, <em>c\'est mérité.</em>':'Votre certificat <em>vous attend</em>.'}</h1><p>${ok?'Téléchargez-le en PDF ou partagez son code de vérification.':`Encore ${ALL.length-P.done.length} étape(s) : il apparaîtra en entier à 100 %. Voici un aperçu.`}</p></div>
+  <div class="cert" style="${ok?'':'filter:grayscale(1);opacity:.55'}"><div class="k">Certificat de réussite</div><h2>Kalam atteste que</h2><div class="nm" id="cn">${P.name}</div><div class="crs">a suivi avec succès la formation <b>${C.titre}</b><br>(${ALL.length} leçons, quiz validés avec ${Object.values(P.quiz).length?Math.round(Object.values(P.quiz).reduce((a,b)=>a+b,0)/Object.values(P.quiz).length):0} % de réussite)</div>
+  <div class="ft"><div>Délivré le ${new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})}<br>Code de vérification : <b>${code}</b></div><div class="seal">Kalam<br>certifié</div><div style="text-align:center"><div class="sig">A. Mbarga</div>Directrice pédagogique</div></div></div>
+  <div class="certf"><input id="nm" value="${P.name}" aria-label="Nom sur le certificat"><button class="btn p" id="pdf" ${ok?'':'disabled style="opacity:.5"'}>Télécharger en PDF</button>${ok?'':'<button class="btn" data-go="player">Terminer le parcours</button>'}</div>`;
+  $('#nm').oninput=e=>{P.name=e.target.value;save();$('#cn').textContent=P.name};$('#pdf').onclick=()=>print()}
+// confettis
+function confetti(){const c=$('#conf'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;const ps=[...Array(160)].map(()=>({x:innerWidth/2,y:innerHeight/3,vx:(Math.random()-.5)*16,vy:Math.random()*-14-4,c:['#2448d8','#ff6b4a','#ffd166','#12805c'][Math.floor(Math.random()*4)],r:Math.random()*6.28}));let f=0;
+  (function t(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.45;p.vx*=.99;p.r+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-4,-2,8,4);x.restore()});if(++f<160)requestAnimationFrame(t);else x.clearRect(0,0,c.width,c.height)})()}
+home();
+</script>
+</body>
+</html>
